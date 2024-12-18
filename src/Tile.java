@@ -13,6 +13,9 @@ public class Tile {
 
     }
 
+    public int getValue() {
+        return this.value;
+    }
     public void setValue(int newValue){
         if(!fixed && newValue > 0 && newValue < 10){
             this.value = newValue;
