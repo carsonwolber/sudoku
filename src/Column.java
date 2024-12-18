@@ -1,9 +1,9 @@
-public class Row {
+public class Column {
 
-    private final int index;
     private final Tile[] tiles;
+    private final int index;
 
-    public Row(Tile[] tiles, int index) {
+    public Column(Tile[] tiles, int index) {
         this.tiles = tiles;
         this.index = index;
     }
