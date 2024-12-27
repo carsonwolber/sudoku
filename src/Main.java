@@ -2,6 +2,8 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main {
     private static void createAndShowGUI() {
@@ -24,6 +26,11 @@ public class Main {
             }
         }
         JButton solveButton = new JButton("Solve");
+        solveButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         solveButton.setBounds(550, 250, 100, 25);
         frame.add(solveButton);
 
