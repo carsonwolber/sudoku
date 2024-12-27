@@ -1,11 +1,18 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Row {
 
     private final int index;
-    private final Tile[] tiles;
+    private List<Tile> tiles;
 
-    public Row(Tile[] tiles, int index) {
-        this.tiles = tiles;
+    public Row(int index) {
+        tiles = new ArrayList<>();
         this.index = index;
+    }
+
+    public void addTile(Tile tile) {
+        tiles.add(tile);
     }
 
     public int getIndex() {
