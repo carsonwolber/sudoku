@@ -10,12 +10,20 @@ public class Main {
         JFrame frame = new JFrame("Carson's Sudoku Solver");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+        Board board = new Board();
 
         int size = 50;
         int padding = 5;
         JTextField[][] grid = new JTextField[9][9];
         for (int i = 0; i < 9; i++) {
+            Row r = new Row(i);
+            board.addRow(r);
             for (int j = 0; j < 9; j++) {
+                Column c = new Column(j);
+                board.addColumn(c);
+                Tile tile = new Tile(i, j);
+                r.addTile(tile);
+                c.addTile(tile);
                 grid[i][j] = new JTextField();
                 grid[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
@@ -28,7 +36,7 @@ public class Main {
         JButton solveButton = new JButton("Solve");
         solveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                System.out.println("Solve button clicked!");
             }
         });
         solveButton.setBounds(550, 250, 100, 25);

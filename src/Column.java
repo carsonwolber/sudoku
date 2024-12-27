@@ -1,11 +1,18 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Column {
 
-    private final Tile[] tiles;
+    private List<Tile> tiles;
     private final int index;
 
-    public Column(Tile[] tiles, int index) {
-        this.tiles = tiles;
+    public Column(int index) {
+        tiles = new ArrayList<>();
         this.index = index;
+    }
+
+    public void addTile(Tile tile) {
+        tiles.add(tile);
     }
 
     public int getIndex() {
