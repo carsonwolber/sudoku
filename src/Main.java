@@ -23,6 +23,9 @@ public class Main {
                 frame.add(grid[i][j]);
             }
         }
+        JButton solveButton = new JButton("Solve");
+        solveButton.setBounds(550, 250, 100, 25);
+        frame.add(solveButton);
 
 
         frame.pack();
