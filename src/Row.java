@@ -27,6 +27,9 @@ public class Row {
         boolean[] seen = new boolean[10];
         for(Tile tile : tiles) {
             int value = tile.getValue();
+            if(value < 0 || value > 9) {
+                return false;
+            }
             if(seen[value] && value != 0){
                 return false;
             }

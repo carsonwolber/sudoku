@@ -49,7 +49,14 @@ public class Main {
                     }
                 }
 
-                board.solveBoard();
+                if (board.validBoard()){
+                    System.out.println("valid");
+                    board.solveBoard();
+                }
+                else {
+                    System.out.println("invalid");
+                    JOptionPane.showMessageDialog(null, "Invalid input");
+                }
 
             }
         });
