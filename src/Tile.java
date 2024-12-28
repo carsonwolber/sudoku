@@ -34,6 +34,14 @@ public class Tile {
         return this.colIndex;
     }
 
+    public boolean isFixed() {
+        return this.fixed;
+    }
+
+    public void printTile(){
+        System.out.println(this.value);
+    }
+
 
 
 }
