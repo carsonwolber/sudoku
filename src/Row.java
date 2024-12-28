@@ -39,7 +39,7 @@ public class Row {
 
     public void printRow() {
         for(Tile tile : tiles) {
-            System.out.print(' ' + tile.getValue() + ' ');
+            tile.printTile();
         }
         System.out.println();
     }

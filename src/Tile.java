@@ -39,7 +39,7 @@ public class Tile {
     }
 
     public void printTile(){
-        System.out.println(this.value);
+        System.out.print(this.value);
     }
 
 

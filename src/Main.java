@@ -49,8 +49,7 @@ public class Main {
                     }
                 }
 
-
-                //board.solveBoard();
+                board.solveBoard();
 
             }
         });
