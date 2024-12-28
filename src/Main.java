@@ -15,15 +15,20 @@ public class Main {
         int size = 50;
         int padding = 5;
         JTextField[][] grid = new JTextField[9][9];
+
+        Column[] columns = new Column[9];
+        for (int j = 0; j < 9; j++) {
+            columns[j] = new Column(j);
+            board.addColumn(columns[j]);
+        }
+
         for (int i = 0; i < 9; i++) {
             Row r = new Row(i);
             board.addRow(r);
             for (int j = 0; j < 9; j++) {
-                Column c = new Column(j);
-                board.addColumn(c);
                 Tile tile = new Tile(i, j);
                 r.addTile(tile);
-                c.addTile(tile);
+                columns[j].addTile(tile);
                 grid[i][j] = new JTextField();
                 grid[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
@@ -50,19 +55,17 @@ public class Main {
                 }
 
                 if (board.validBoard()){
-                    System.out.println("valid");
                     board.solveBoard();
                 }
                 else {
-                    System.out.println("invalid");
                     JOptionPane.showMessageDialog(null, "Invalid input");
                 }
 
             }
         });
+
         solveButton.setBounds(550, 250, 100, 25);
         frame.add(solveButton);
-
 
         frame.pack();
         frame.setVisible(true);

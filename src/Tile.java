@@ -17,9 +17,7 @@ public class Tile {
     }
 
     public void setValue(int newValue){
-        if(!fixed && newValue > 0 && newValue < 10){
             this.value = newValue;
-        }
     }
 
     public int findBoxIndex(int rowIndex, int colIndex) {
