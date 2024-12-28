@@ -18,4 +18,35 @@ public class Board {
         columns.add(newColumn);
     }
 
+    public List<Column> getColumns() {
+        return columns;
+    }
+
+    public List<Row> getRows() {
+        return rows;
+    }
+
+    public Tile getTile(int rowIndex, int columnIndex) {
+        for (Row rowN : rows) {
+            for(Tile tileN : rowN.getTiles()){
+                if(tileN.getColIndex() == columnIndex && tileN.getRowIndex() == rowIndex){
+                    return tileN;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void printBoard(){
+        for(Row row : rows){
+            row.printRow();
+        }
+    }
+
+
+
+    public void solveBoard() {
+
+    }
+
 }

@@ -15,6 +15,10 @@ public class Row {
         tiles.add(tile);
     }
 
+    public List<Tile> getTiles() {
+        return tiles;
+    }
+
     public int getIndex() {
         return this.index;
     }
@@ -33,4 +37,10 @@ public class Row {
         return true;
     }
 
+    public void printRow() {
+        for(Tile tile : tiles) {
+            System.out.print(' ' + tile.getValue() + ' ');
+        }
+        System.out.println();
+    }
 }

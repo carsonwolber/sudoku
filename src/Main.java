@@ -36,7 +36,22 @@ public class Main {
         JButton solveButton = new JButton("Solve");
         solveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Solve button clicked!");
+                for (int i = 0; i < 9; i++) {
+                    for (int j = 0; j < 9; j++) {
+                        Tile tile = board.getTile(i, j);
+                        String gridTxt = grid[i][j].getText();
+                        if (gridTxt.equals("")) {
+                            tile.setValue(0);
+                        }
+                        else {
+                            tile.setValue(Integer.parseInt(gridTxt));
+                        }
+                    }
+                }
+
+
+                //board.solveBoard();
+
             }
         });
         solveButton.setBounds(550, 250, 100, 25);

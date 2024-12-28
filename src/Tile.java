@@ -10,12 +10,12 @@ public class Tile {
         this.colIndex = colIndex;
         this.value = 0;
         this.fixed = false;
-
     }
 
     public int getValue() {
         return this.value;
     }
+
     public void setValue(int newValue){
         if(!fixed && newValue > 0 && newValue < 10){
             this.value = newValue;
@@ -24,6 +24,14 @@ public class Tile {
 
     public int findBoxIndex(int rowIndex, int colIndex) {
         return (rowIndex /3) + (colIndex /3) *3;
+    }
+
+    public int getRowIndex() {
+        return this.rowIndex;
+    }
+
+    public int getColIndex() {
+        return this.colIndex;
     }
 
 
