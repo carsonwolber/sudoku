@@ -65,7 +65,6 @@ public class Main {
                 }
 
                 if (board.validBoard()){
-                    System.out.println("valid!");
                     board.solveBoard();
                 }
                 else {
