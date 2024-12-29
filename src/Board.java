@@ -87,13 +87,24 @@ public class Board {
             }
         }
 
-
-
         return true;
 
     }
 
+    private boolean filledBoard(){
+        for(Row row : rows){
+            for(Tile tile : row.getTiles()){
+                if (tile.getValue() == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public void solveBoard() {
+        int i = 0;
+        int j = 0;
 
     }
 
