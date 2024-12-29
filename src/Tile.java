@@ -40,6 +40,7 @@ public class Tile {
         System.out.print(this.value);
     }
 
-
-
+    public void setFixed(boolean fixed) {
+        this.fixed = fixed;
+    }
 }

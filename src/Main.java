@@ -42,6 +42,9 @@ public class Main {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 Tile tile = board.getTile(i, j);
+                if(tile.getValue() != 0){
+                    tile.setFixed(true);
+                }
                 int index = tile.findBoxIndex();
                 Box b = board.findBox(index);
                 b.addTile(tile);
