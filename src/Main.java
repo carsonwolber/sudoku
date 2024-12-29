@@ -16,28 +16,38 @@ public class Main {
         int padding = 5;
         JTextField[][] grid = new JTextField[9][9];
 
-        Column[] columns = new Column[9];
-        for (int j = 0; j < 9; j++) {
-            columns[j] = new Column(j);
-            board.addColumn(columns[j]);
-        }
-
         for (int i = 0; i < 9; i++) {
             Row r = new Row(i);
+            Column c = new Column(i);
             board.addRow(r);
+            board.addColumn(c);
             for (int j = 0; j < 9; j++) {
                 Tile tile = new Tile(i, j);
                 r.addTile(tile);
-                columns[j].addTile(tile);
+                c.addTile(tile);
                 grid[i][j] = new JTextField();
                 grid[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-                int x = i * (size +padding) + 10;
+                int x = i * (size + padding) + 10;
                 int y = j * (size + padding) + 10;
+
                 grid[i][j].setBounds(x, y, size, size);
                 frame.add(grid[i][j]);
             }
         }
+        for (int i = 0; i < 9; i++) {
+            Box b = new Box(i);
+            board.addBox(b);
+        }
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                Tile tile = board.getTile(i, j);
+                int index = tile.findBoxIndex();
+                Box b = board.findBox(index);
+                b.addTile(tile);
+            }
+        }
+
         JButton solveButton = new JButton("Solve");
         solveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -55,6 +65,7 @@ public class Main {
                 }
 
                 if (board.validBoard()){
+                    System.out.println("valid!");
                     board.solveBoard();
                 }
                 else {
