@@ -4,11 +4,15 @@ import java.util.List;
 public class Box {
 
     private List<Tile> tiles;
-    private final int index;
+    private int index;
 
     public Box(int index){
         this.index = index;
         tiles = new ArrayList<>();
+    }
+
+    public void setIndex(int index){
+        this.index = index;
     }
 
     public void addTile(Tile tile) {

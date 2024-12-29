@@ -4,11 +4,13 @@ import java.util.List;
 public class Board {
     private List<Column> columns;
     private List<Row> rows;
+    private List<Box> boxes;
 
 
     public Board() {
         this.columns = new ArrayList<>();
         this.rows = new ArrayList<>();
+        this.boxes = new ArrayList<>();
     }
 
 
@@ -19,6 +21,10 @@ public class Board {
 
     public void addColumn(Column newColumn){
         columns.add(newColumn);
+    }
+
+    public void addBox(Box newBox){
+        boxes.add(newBox);
     }
 
 
@@ -62,7 +68,17 @@ public class Board {
                 return false;
             }
         }
+
+        for(Box box : boxes){
+            if (!(box.isValid())){
+                return false;
+            }
+        }
+
+
+
         return true;
+
     }
 
 
