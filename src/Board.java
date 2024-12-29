@@ -13,7 +13,6 @@ public class Board {
         this.boxes = new ArrayList<>();
     }
 
-
     public void addRow(Row newRow){
         rows.add(newRow);
     }
@@ -35,6 +34,19 @@ public class Board {
 
     public List<Row> getRows() {
         return rows;
+    }
+
+    public List<Box> getBoxes() {
+        return boxes;
+    }
+
+    public Box findBox(int index) {
+        for (Box box : boxes) {
+            if(box.getIndex() == index){
+                return box;
+            }
+        }
+        return null;
     }
 
 

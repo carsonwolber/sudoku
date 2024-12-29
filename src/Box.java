@@ -11,9 +11,6 @@ public class Box {
         tiles = new ArrayList<>();
     }
 
-    public void setIndex(int index){
-        this.index = index;
-    }
 
     public void addTile(Tile tile) {
         tiles.add(tile);

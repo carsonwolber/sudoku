@@ -20,7 +20,7 @@ public class Tile {
             this.value = newValue;
     }
 
-    public int findBoxIndex(int rowIndex, int colIndex) {
+    public int findBoxIndex() {
         return (rowIndex /3) + (colIndex /3) *3;
     }
 
