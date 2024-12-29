@@ -77,6 +77,7 @@ public class Main {
         solveButton.setBounds(550, 250, 100, 25);
         frame.add(solveButton);
 
+        frame.setMinimumSize(new Dimension(700, 600));
         frame.pack();
         frame.setVisible(true);
     }
