@@ -86,7 +86,6 @@ public class Board {
                 return false;
             }
         }
-
         return true;
 
     }
@@ -102,10 +101,47 @@ public class Board {
         return true;
     }
 
+    private Tile backtrack_tile(int i, int j){
+        // if we can, go back across rows, otherwise do so by column,
+        if (j > 0){
+            return getTile(i, j-1);
+        }
+        return getTile(i-1, j);
+    }
+
+    private Tile advance_tile(int i, int j){
+        if (j < 9){
+            return getTile(i, j+1);
+        }
+        return getTile(i+1, j);
+    }
+
     public void solveBoard() {
         int i = 0;
         int j = 0;
-
+        while(!filledBoard() && !validBoard()){
+            Tile tile = getTile(i, j);
+            if(!tile.isFixed()){
+                if(tile.getValue() < 9){
+                    tile.setValue(tile.getValue() +1);
+                    if(!validBoard()){
+                        /*
+                         if incrementing by 1 breaks the boards validity, increment until we
+                         a. find a valid input
+                         b. exhaust our options and backtrack
+                         */
+                        while(tile.getValue() < 9 && !validBoard()){
+                            tile.setValue(tile.getValue() +1);
+                        }
+                        if(!validBoard()){
+                            tile = backtrack_tile(i,j);
+                        }
+                        else {
+                            tile = advance_tile(i,j);
+                        }
+                    }
+                }
+            }
+        }
     }
-
 }
