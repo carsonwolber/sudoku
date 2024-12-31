@@ -5,13 +5,50 @@ public class Board {
     private List<Column> columns;
     private List<Row> rows;
     private List<Box> boxes;
+    private Tile[][] tiles;
 
 
     public Board() {
         this.columns = new ArrayList<>();
         this.rows = new ArrayList<>();
         this.boxes = new ArrayList<>();
+        tiles = new Tile[9][9];
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                tiles[i][j] = new Tile(i, j);
+            }
+        }
+
+        for (int i = 0; i < 9; i++) {
+            Row r = new Row(i);
+            Column c = new Column(i);
+
+            rows.add(r);
+            columns.add(c);
+
+            for (int j = 0; j < 9; j++) {
+                r.addTile(tiles[i][j]);
+                c.addTile(tiles[j][i]);
+            }
+        }
+
+        for (int boxIndex = 0; boxIndex < 9; boxIndex++) {
+            Box b = new Box(boxIndex);
+            boxes.add(b);
+
+            int startRow = (boxIndex / 3) * 3;
+            int startCol = (boxIndex % 3) * 3;
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    b.addTile(tiles[startRow + i][startCol + j]);
+                }
+            }
+        }
+
     }
+
 
     public void addRow(Row newRow){
         rows.add(newRow);
@@ -51,14 +88,7 @@ public class Board {
 
 
     public Tile getTile(int rowIndex, int columnIndex) {
-        for (Row rowN : rows) {
-            for(Tile tileN : rowN.getTiles()){
-                if(tileN.getColIndex() == columnIndex && tileN.getRowIndex() == rowIndex){
-                    return tileN;
-                }
-            }
-        }
-        return null;
+        return tiles[rowIndex][columnIndex];
     }
 
 
@@ -101,26 +131,12 @@ public class Board {
         return true;
     }
 
-    private Tile backtrack_tile(int i, int j){
-        // if we can, go back across rows, otherwise do so by column,
-        if (j > 0){
-            return getTile(i, j-1);
-        }
-        return getTile(i-1, j);
-    }
-
-    private Tile advance_tile(int i, int j){
-        if (j < 9){
-            return getTile(i, j+1);
-        }
-        return getTile(i+1, j);
-    }
-
     public void solveBoard() {
         int i = 0;
         int j = 0;
-        while(!filledBoard() && !validBoard()){
+        while(!filledBoard()){
             Tile tile = getTile(i, j);
+            tile.printTile();
             if(!tile.isFixed()){
                 if(tile.getValue() < 9){
                     tile.setValue(tile.getValue() +1);
@@ -134,12 +150,41 @@ public class Board {
                             tile.setValue(tile.getValue() +1);
                         }
                         if(!validBoard()){
-                            tile = backtrack_tile(i,j);
+                            /*
+                            entering this code suggests the change we made produced an invalid
+                            board. To manage this, we need to backtrack.
+
+                            a. if we can, backtrack along columns (j--)
+                            b. otherwise, do so by row
+                             */
+                            tile.setValue(0);
+                            if(j >0){
+                                j--;
+                            } else if (i >0) {
+                                i--;
+                                j=8;
+                            }
                         }
                         else {
-                            tile = advance_tile(i,j);
+                            // board is still valid post change, advance
+                            if(j < 8){
+                                j++;
+                            }
+                            else {
+                                i++;
+                                j=0;
+                            }
                         }
                     }
+                }
+            }
+            else {
+                if(j < 8){
+                    j++;
+                }
+                else {
+                    i++;
+                    j=0;
                 }
             }
         }
