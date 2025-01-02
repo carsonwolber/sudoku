@@ -139,7 +139,6 @@ public class Board {
         int j = 0;
 
         while(!filledBoard()){
-            System.out.println(i + " " + j);
             Tile tile = getTile(i, j);
             if(!tile.isFixed()){
                 if(tile.getValue() < 9){
@@ -150,7 +149,6 @@ public class Board {
                         }
                         if(!validBoard()){
                             tile.setValue(0);
-                            System.out.println("a");
                             if(j > 0){
                                 j--;
                             }
@@ -160,7 +158,6 @@ public class Board {
                             }
                         }
                         else{
-                            System.out.println("b");
                             if(j < 8){
                                 j++;
                             }
@@ -171,7 +168,6 @@ public class Board {
                         }
                     }
                     else {
-                        System.out.println("b");
                       if(j < 8){
                           j++;
                       }
@@ -181,9 +177,18 @@ public class Board {
                       }
                     }
                 }
+                else {
+                    tile.setValue(0);
+                    if(j > 0){
+                        j--;
+                    }
+                    else{
+                        j = 8;
+                        i--;
+                    }
+                }
             }
             else {
-                System.out.println("d");
                 if(j < 8){
                     j++;
                 }
