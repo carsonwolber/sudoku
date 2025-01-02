@@ -137,39 +137,30 @@ public class Board {
     public void solveBoard() {
         int i = 0;
         int j = 0;
+
         while(!filledBoard()){
+            System.out.println(i + " " + j);
             Tile tile = getTile(i, j);
-            System.out.println(tile.getValue());
             if(!tile.isFixed()){
                 if(tile.getValue() < 9){
-                    tile.setValue(tile.getValue() +1);
+                    tile.setValue(tile.getValue() + 1);
                     if(!validBoard()){
-                        /*
-                         if incrementing by 1 breaks the boards validity, increment until we
-                         a. find a valid input
-                         b. exhaust our options and backtrack
-                         */
-                        while(tile.getValue() < 9 && !validBoard()){
-                            tile.setValue(tile.getValue() +1);
+                        while(!validBoard() && tile.getValue() < 9){
+                            tile.setValue(tile.getValue() + 1);
                         }
                         if(!validBoard()){
-                            /*
-                            entering this code suggests the change we made produced an invalid
-                            board. To manage this, we need to backtrack.
-
-                            a. if we can, backtrack along columns (j--)
-                            b. otherwise, do so by row
-                             */
                             tile.setValue(0);
-                            if(j >0){
+                            System.out.println("a");
+                            if(j > 0){
                                 j--;
-                            } else if (i >0) {
+                            }
+                            else{
+                                j = 8;
                                 i--;
-                                j=8;
                             }
                         }
-                        else {
-                            // board is still valid post change, advance
+                        else{
+                            System.out.println("b");
                             if(j < 8){
                                 j++;
                             }
@@ -179,9 +170,20 @@ public class Board {
                             }
                         }
                     }
+                    else {
+                        System.out.println("b");
+                      if(j < 8){
+                          j++;
+                      }
+                      else{
+                          i++;
+                          j=0;
+                      }
+                    }
                 }
             }
             else {
+                System.out.println("d");
                 if(j < 8){
                     j++;
                 }
