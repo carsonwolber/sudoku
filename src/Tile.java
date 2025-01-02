@@ -17,7 +17,9 @@ public class Tile {
     }
 
     public void setValue(int newValue){
+        if(!this.fixed){
             this.value = newValue;
+        }
     }
 
     public int findBoxIndex() {
@@ -26,6 +28,11 @@ public class Tile {
 
     public int getRowIndex() {
         return this.rowIndex;
+    }
+
+    public void setInitValue(int newValue) {
+        this.value = newValue;
+        this.fixed = true;
     }
 
     public int getColIndex() {

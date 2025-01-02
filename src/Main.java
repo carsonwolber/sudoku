@@ -26,14 +26,6 @@ public class Main {
                 frame.add(grid[i][j]);
             }
         }
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                Tile tile = board.getTile(i, j);
-                if(tile.getValue() != 0){
-                    tile.setFixed(true);
-                }
-            }
-        }
 
         JButton solveButton = new JButton("Solve");
         solveButton.addActionListener(new ActionListener() {
@@ -46,24 +38,18 @@ public class Main {
                             tile.setValue(0);
                         }
                         else {
-                            tile.setValue(Integer.parseInt(gridTxt));
+                            tile.setInitValue(Integer.parseInt(gridTxt));
                         }
                     }
                 }
 
                 if (board.validBoard()){
-                    System.out.println("before");
-                    board.printBoard();
                     board.solveBoard();
-                    System.out.println("after");
-                    board.printBoard();
-
                     for(int i = 0; i < 9; i++){
                         for(int j = 0; j < 9; j++){
                             grid[i][j].setText(String.valueOf(board.getTile(i, j).getValue()));
                         }
                     }
-
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Invalid input");
