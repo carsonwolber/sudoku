@@ -28,6 +28,18 @@ public class Main {
         }
 
         JButton solveButton = new JButton("Solve");
+        JButton clearButton = new JButton("Clear");
+
+        clearButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                for (int i = 0; i < 9; i++) {
+                    for (int j = 0; j < 9; j++) {
+                        grid[i][j].setText("");
+                    }
+                }
+            }
+        });
+
         solveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 for (int i = 0; i < 9; i++) {
@@ -59,7 +71,9 @@ public class Main {
         });
 
         solveButton.setBounds(550, 250, 100, 25);
+        clearButton.setBounds(550, 300, 100, 25);
         frame.add(solveButton);
+        frame.add(clearButton);
 
         frame.setMinimumSize(new Dimension(700, 600));
         frame.pack();
