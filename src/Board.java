@@ -91,6 +91,15 @@ public class Board {
         return tiles[rowIndex][columnIndex];
     }
 
+    public void clearBoard() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                tiles[i][j].setFixed(false);
+                tiles[i][j].setValue(0);
+            }
+        }
+    }
+
 
     public void printBoard(){
         for(int i = 0; i < 9; i++){

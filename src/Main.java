@@ -37,6 +37,7 @@ public class Main {
                         grid[i][j].setText("");
                     }
                 }
+                board.clearBoard();
             }
         });
 
@@ -65,6 +66,7 @@ public class Main {
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Invalid input");
+                    board.clearBoard();
                 }
 
             }
