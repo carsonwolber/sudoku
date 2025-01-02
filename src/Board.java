@@ -93,8 +93,11 @@ public class Board {
 
 
     public void printBoard(){
-        for(Row row : rows){
-            row.printRow();
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                System.out.print(tiles[j][i].getValue() + " ");
+            }
+            System.out.println();
         }
     }
 
@@ -136,7 +139,7 @@ public class Board {
         int j = 0;
         while(!filledBoard()){
             Tile tile = getTile(i, j);
-            tile.printTile();
+            System.out.println(tile.getValue());
             if(!tile.isFixed()){
                 if(tile.getValue() < 9){
                     tile.setValue(tile.getValue() +1);
