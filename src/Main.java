@@ -57,6 +57,13 @@ public class Main {
                     board.solveBoard();
                     System.out.println("after");
                     board.printBoard();
+
+                    for(int i = 0; i < 9; i++){
+                        for(int j = 0; j < 9; j++){
+                            grid[i][j].setText(String.valueOf(board.getTile(i, j).getValue()));
+                        }
+                    }
+
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Invalid input");
@@ -81,4 +88,5 @@ public class Main {
             }
         });
     }
+
 }
